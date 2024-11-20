@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+:root{
+    --color-gradient: linear-gradient(90deg, #eee, #f9f9f9, #eee);
+    --color-background: #d9d9d9;
+    --color-card-background: linear-gradient(45deg, rgb(240, 240, 240), white);
+    --color-header: rgb(226, 0, 226);
+    --color-btn-change: linear-gradient(45deg, rgb(226, 0, 226), rgb(134, 0, 134));
+    --hover-btn-change: linear-gradient(-45deg, rgb(172, 0, 172), rgb(134, 0, 134));
+    --color-copy: #D6D6D6;
+    --color-num: #a3a3a3;
+    --color-input: #000;
+    --color-neg: #838383;
+    --color-del:#6d6d6d;
+    --color-sign: rgb(226, 0, 226);
+    --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --bg-del: none;
+    --bg-sign: none;
+}
+
+.dark-mode{
+    --color-gradient: linear-gradient(to right, #656871 0%, #888b94 20%, #656871 40%, #656871 100%);
+    --color-background: #414247;
+    --color-card-background: #252525;
+    --color-btn-change: linear-gradient(45deg, rgb(226, 0, 226), rgb(73, 0, 73));
+    --hover-btn-change: linear-gradient(-45deg, rgb(172, 0, 172), rgb(61, 0, 61));
+    --color-header: #fff;
+    --color-copy: #D6D6D6;
+    --color-input: #ffffff;
+    --color-num: #ffffff;
+    --color-neg: rgb(146, 146, 146);
+    --color-del:#ebebeb;
+    --color-sign: rgb(179, 0, 179);
+    --box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    --bg-del: linear-gradient(-45deg, rgb(172, 0, 172), rgb(61, 0, 61));
+    --bg-sign: linear-gradient(90deg, #eee, #f9f9f9, #eee);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+}
+
+body{
+    overflow: hidden;
+    height: 100vh;
+    background: var(--color-background);
+    transition: all 1s ease-in-out;
+}
+
+.calc__container{
+    display: grid;
+    grid-template-rows: 0.3fr 1fr 2fr;
+    background: var(--color-card-background);
+    max-width:320px;
+    min-height: 580px;
+    border-radius: 20px;
+    margin: 20px auto;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.header{
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.header p{
+    color: var(--color-header);
+    font-size: 18px;
+    font-weight: 500;
+    grid-column: 2;
+    justify-self: center;
+}
+
+.header button{
+    justify-self: flex-end;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;   
+    background: var(--color-btn-change);
+    grid-column: 3;
+    justify-self: end;
+    box-shadow: var(--box-shadow);
+    transition: all .3s ease-in;
+}
+
+.header button:hover{
+    background: var(--hover-btn-change);
+}
+
+.input-box{
+    display: flex;
+    flex-direction:column;
+    align-items: flex-end;
+}
+
+.copy-input{
+    color: var(--color-copy);
+    font-size: 16px;
+    font-weight: 400;
+    margin: 60px 16px 10px;
+}
+.input{
+    text-align: end;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 16px;
+    color:var(--color-input);
+    text-overflow: clip;
+}
+
+.btns-box{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    align-items: flex-end;
+    padding:16px;
+}
+
+.btns-box > div{
+    cursor: pointer;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    line-height: 50px;
+    padding: 5px auto;
+    border-radius: 50%;
+    width:50px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.btns-box > div:hover{
+    box-shadow: var(--box-shadow);
+}
+
+.num{
+    color: var(--color-num);
+
+}
+
+.neg{
+    color:var(--color-neg);
+}
+
+.sign{
+    font-size: 20px;
+    font-weight: 500;
+    color:var(--color-sign);
+    background: var(--bg-sign);
+}
+
+.btn-del{
+    color:var(--color-del);
+    background: var(--bg-del);
+}
+
+
+.loading{
+    position: relative;
+}
+
+.loading::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0.25rem;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: var(--color-gradient);
+    background-size: 200%;
+    animation: loading 1s infinite reverse;
+}
+
+@keyframes loading {
+    0%{
+        background-position: -100% 0;
+    }
+    100%{
+        background-position: 100% 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .calc__container{
+        max-height: 500px;
+        margin: 0 auto;
+        grid-template-rows: 0.3fr 0.5fr 1.5fr;
+    }
+    .copy-input{
+        margin-top: 30px;
+    }
+    .btns-box{
+        padding-top: 2px;
+        padding-bottom: 16px;
+    }
+}
